@@ -33,7 +33,7 @@ h1{
 }
 
 .GridPixel{
-    background-color : red;
+    background-color : white;
     height:auto;
     flex:1;
     width:auto;
@@ -43,6 +43,7 @@ h1{
     display: flex;
     gap : 20px;
 }
+
 button{
     color:black;
     border-radius: 5%;
