@@ -2,13 +2,19 @@ console.log("START!");
 
 const gridRef = document.querySelector(".Grid");
 const clearButton = document.querySelector(".Clear");
+const changeSize = document.querySelector(".ChangeSize")
 const DEFAULT_GRID_SIZE = 16;
 const MAX_GRID_SIZE = 64;
+const MIN_GRID_SIZE = 16;
+
 let currentGridSize = DEFAULT_GRID_SIZE;
+let sketchColor = "black";
+
+let pixels = Array();
 
 function createGrid(size = DEFAULT_GRID_SIZE)
 {
-    if(size > MAX_GRID_SIZE)
+    if(size > MAX_GRID_SIZE || size < MIN_GRID_SIZE)
     {
         console.log(" failed! Grid size exceeds max grid size limit!");
         return;
@@ -34,16 +40,14 @@ function createGrid(size = DEFAULT_GRID_SIZE)
         }
         gridRef.appendChild(row_div);
     }
-
-    
+    pixels = Array.from(document.querySelectorAll('.GridPixel'));
+    pixels.forEach(pixel => pixel.addEventListener("mouseover",()=>{
+        //console.log(pixel);
+        pixel.style.backgroundColor = sketchColor;
+    }));    
 }
 
 createGrid(64);
-const pixels = Array.from(document.querySelectorAll('.GridPixel'));
-pixels.forEach(pixel => pixel.addEventListener("mouseover",()=>{
-    //console.log(pixel);
-    pixel.style.backgroundColor = "black";
-}));
 
 clearButton.addEventListener("click",()=>{
     //clear the grid
@@ -51,4 +55,15 @@ clearButton.addEventListener("click",()=>{
     pixels.forEach(pixel => {
         pixel.style.backgroundColor = "white";
     });
-})
+});
+
+changeSize.addEventListener("click", ()=>{
+    //prompt the user to change the grid size
+
+    console.log("Change size!");
+
+    let newSize = Number(prompt("Enter new grid size:"));
+    console.log(newSize);
+    gridRef.innerHTML = "";
+    createGrid(newSize);
+});
