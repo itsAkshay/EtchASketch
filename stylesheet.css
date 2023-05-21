@@ -12,9 +12,31 @@ h1{
 
 .Grid{
     display: flex;
-    min-width : 500px;
-    min-height: 500px;
+    flex-direction: column;
+    min-width : 600px;
+    min-height: 600px;
     border : 1px solid black;
+    flex-wrap: wrap;
+    margin:0px;
+    flex:auto;
+    gap:0px;
+}
+
+.GridRow{
+    display: flex;
+    flex-direction: row;
+    flex:1;
+    flex-wrap: wrap;
+    min-width:100px;
+    align-content: stretch;
+    gap:0px;
+}
+
+.GridPixel{
+    background-color : red;
+    height:auto;
+    flex:1;
+    width:auto;
 }
 
 .ButtonContainer{
